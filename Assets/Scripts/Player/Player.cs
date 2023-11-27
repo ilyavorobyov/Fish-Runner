@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +8,7 @@ public class Player : MonoBehaviour
 
     private int _maxHealth;
 
-    public event UnityAction<int> HealthDecreased;    
+    public event UnityAction<int> HealthDecreased;
     public event UnityAction<int> HealthIncreased;
     public event UnityAction Died;
 
@@ -19,12 +17,12 @@ public class Player : MonoBehaviour
         _maxHealth = _health;
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage()
     {
-        _health -= damage;
+        _health--;
         HealthDecreased?.Invoke(_health);
 
-        if( _health <= 0)
+        if (_health <= 0)
         {
             Die();
         }
@@ -32,7 +30,7 @@ public class Player : MonoBehaviour
 
     public void ActivateShield()
     {
-        _shield.gameObject.SetActive(true);
+        _shield.TurnOn();
     }
 
     public void IncreaseHealth(int healthToIncrease)

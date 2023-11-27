@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -14,14 +11,29 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _zRotationAngle;
     [SerializeField] private float _yRotationAngle;
 
+    private PlayerInput _playerInput;
+    private float _noRotationValue = 0;
     private Vector3 _targetPosition;
     private float _playerRotationY;
 
     private void Awake()
     {
+        _playerInput = new PlayerInput();
+        _playerInput.Player.MoveUp.performed += ctx => OnTryMoveUp();
+        _playerInput.Player.MoveDown.performed += ctx => OnTryMoveDown();
+        _playerInput.Player.MoveLeft.performed += ctx => OnTryMoveLeft();
+        _playerInput.Player.MoveRight.performed += ctx => OnTryMoveRight();
         _targetPosition = transform.position;
-        _playerRotationY = 0;
+        _playerRotationY = _noRotationValue;
     }
+
+    private void OnEnable()
+    {
+        _playerInput.Enable();    }
+
+    private void OnDisable()
+    {
+        _playerInput.Disable();    }
 
     private void Update()
     {
@@ -30,48 +42,54 @@ public class PlayerMover : MonoBehaviour
             Move();
         }
 
-        if(transform.position == _targetPosition)
+        if (transform.position == _targetPosition)
         {
-            Rotate(yAngle: 0);
+            Rotate(yAngle: _noRotationValue);
         }
     }
 
-    public void TryMoveUp()
+    private void OnTryMoveUp()
     {
-        if(_targetPosition.y < _maxHeight)
+        if (_targetPosition.y < _maxHeight)
         {
             SetNextPositionY(+_stepSize, _zRotationAngle);
         }
     }
 
-    public void TryMoveDown()
+    private void OnTryMoveDown()
     {
-        if(_targetPosition.y > _minHeight)
+        if (_targetPosition.y > _minHeight)
         {
             SetNextPositionY(-_stepSize, -_zRotationAngle);
         }
     }
 
-    public void TryMoveLeft()
+    private void OnTryMoveLeft()
     {
-        if(_targetPosition.x > _minPosX)
+        if (_targetPosition.x > _minPosX)
         {
             SetNextPositionX(-_stepSize, _yRotationAngle);
         }
     }
 
-    public void TryMoveRight()
+    private void OnTryMoveRight()
     {
         if (_targetPosition.x < _maxPosX)
         {
-            SetNextPositionX(_stepSize,0);
+            SetNextPositionX(_stepSize, _noRotationValue);
         }
     }
 
     private void SetNextPositionY(float stepSize, float zRotationAngle)
     {
         _targetPosition = new Vector2(_targetPosition.x, _targetPosition.y + stepSize);
-        Rotate(yAngle: _playerRotationY, zAngle:zRotationAngle);
+        Rotate(yAngle: _playerRotationY, zAngle: zRotationAngle);
+    }
+
+    private void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, _targetPosition,
+            _moveSpeed * Time.deltaTime);
     }
 
     private void SetNextPositionX(float stepSize, float rotationAngle)
@@ -79,16 +97,10 @@ public class PlayerMover : MonoBehaviour
         _targetPosition = new Vector2(_targetPosition.x + stepSize, _targetPosition.y);
         _playerRotationY = rotationAngle;
         Rotate(yAngle: _playerRotationY);
+        _playerRotationY = _noRotationValue;
     }
 
-    private void Move()
-    {
-        transform.position = Vector3.MoveTowards(transform.position,
-            _targetPosition, 
-            _moveSpeed * Time.deltaTime);
-    }
-
-    private void Rotate(float xAngle = 0, float yAngle = 0,float zAngle = 0)
+    private void Rotate(float xAngle = 0, float yAngle = 0, float zAngle = 0)
     {
         Quaternion rotation = Quaternion.Euler(xAngle, yAngle, zAngle);
         transform.rotation = rotation;

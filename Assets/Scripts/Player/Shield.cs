@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,18 +15,6 @@ public class Shield : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
-    {
-        _strength = 3;
-        _defaultSprite = _strengthSprites[_strength - 1];
-        _spriteRenderer.sprite = _defaultSprite;
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
     public void TakeDamage()
     {
         _strength--;
@@ -41,5 +28,13 @@ public class Shield : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void TurnOn()
+    {
+        gameObject.SetActive(true);
+        _strength = 3;
+        _defaultSprite = _strengthSprites[_strength - 1];
+        _spriteRenderer.sprite = _defaultSprite;
     }
 }

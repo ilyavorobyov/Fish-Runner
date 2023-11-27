@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
@@ -33,7 +30,7 @@ public class HealthDisplay : MonoBehaviour
     {
         for (int i = 0; i < health; i++)
         {
-            _healthImages[health-1].SetFullHealth();
+            _healthImages[health - 1].SetFullHealth();
         }
     }
 }

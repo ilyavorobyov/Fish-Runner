@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ScoreDisplay : MonoBehaviour
 {
     [SerializeField] private ScoreCounter _scoreCounter;
-    [SerializeField] private TMP_Text _scpreDisplay;
+    [SerializeField] private TMP_Text _scoreDisplay;
 
     private void OnEnable()
     {
@@ -21,6 +18,6 @@ public class ScoreDisplay : MonoBehaviour
 
     private void OnScoreChanged(int score)
     {
-        _scpreDisplay.text = score.ToString();
+        _scoreDisplay.text = score.ToString();
     }
 }

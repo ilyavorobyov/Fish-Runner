@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +7,7 @@ public class Parallax : MonoBehaviour
     [SerializeField] private float _speed;
 
     private RawImage _image;
-    private float _imagePositionX;
+    private float _positionX;
 
     private void Awake()
     {
@@ -18,12 +16,12 @@ public class Parallax : MonoBehaviour
 
     private void Update()
     {
-        _imagePositionX += _speed * Time.deltaTime;
+        _positionX += _speed * Time.deltaTime;
 
-        if( _imagePositionX >  1)
+        if (_positionX > 1)
         {
-            _imagePositionX = 0;
+            _positionX = 0;
         }
-        _image.uvRect = new Rect(_imagePositionX, 0, _image.uvRect.width, _image.uvRect.height);
+        _image.uvRect = new Rect(_positionX, 0, _image.uvRect.width, _image.uvRect.height);
     }
 }

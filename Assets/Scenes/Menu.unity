@@ -415,7 +415,6 @@ GameObject:
   - component: {fileID: 575237508}
   - component: {fileID: 575237511}
   - component: {fileID: 575237510}
-  - component: {fileID: 575237509}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -442,19 +441,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &575237509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575237507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb4a9f0b32482c843840f6f12004bf39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startButton: {fileID: 1515401}
 --- !u!114 &575237510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +491,7 @@ GameObject:
   - component: {fileID: 733810051}
   - component: {fileID: 733810050}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MenuImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,8 +566,9 @@ GameObject:
   - component: {fileID: 1015615227}
   - component: {fileID: 1015615226}
   - component: {fileID: 1015615225}
+  - component: {fileID: 1015615229}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,6 +659,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1015615229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015615224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4a9f0b32482c843840f6f12004bf39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startButton: {fileID: 1515401}
 --- !u!1 &1948066098
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,9 +683,8 @@ GameObject:
   - component: {fileID: 1948066099}
   - component: {fileID: 1948066101}
   - component: {fileID: 1948066100}
-  - component: {fileID: 1948066102}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PlayButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -807,58 +806,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948066098}
   m_CullTransparentMesh: 1
---- !u!114 &1948066102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948066098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 1948066100}
-  uniqueFontTMP: {fileID: 0}
-  textLComponent: {fileID: 0}
-  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
-  text: "\u0418\u0433\u0440\u0430\u0442\u044C"
-  ru: "\u0418\u0433\u0440\u0430\u0442\u044C"
-  en: Play
-  tr: Oynamak
-  az: 
-  be: 
-  he: 
-  hy: 
-  ka: 
-  et: 
-  fr: 
-  kk: 
-  ky: 
-  lt: 
-  lv: 
-  ro: 
-  tg: 
-  tk: 
-  uk: 
-  uz: 
-  es: 
-  pt: 
-  ar: 
-  id: 
-  ja: 
-  it: 
-  de: 
-  hi: 
-  changeOnlyFont: 0
-  fontNumber: 0
-  uniqueFont: {fileID: 0}
-  additionalText: {fileID: 0}
-  textHeight: 20
-  processTranslateLabel: 3/3 completed
-  componentTextField: 1
-  countLang: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

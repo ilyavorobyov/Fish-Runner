@@ -1,2 +1,0 @@
-Build path: G:/UnityBuilds/FishRunner
-Build number: 19

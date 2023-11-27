@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +8,11 @@ public class ScoreCounter : MonoBehaviour
     [SerializeField] private int _secondsToAddScore;
     [SerializeField] private int _scoreToRiseSpeed;
 
-    private WaitForSeconds _waitForUpdateScore;
+    private const string MaxResult = "MaxScore";
+
+    private Coroutine _updateScore;
+    private float _speedBoost = 0.2f;
+    private int _startScore = 0;
 
     public event UnityAction<int> ScoreChanged;
 
@@ -19,42 +21,43 @@ public class ScoreCounter : MonoBehaviour
 
     private void Awake()
     {
-        _waitForUpdateScore = new WaitForSeconds(_secondsToAddScore);
-
-        MaxScore = PlayerPrefs.GetInt("MaxScore", 0);
-
-        Score = 0;
+        MaxScore = PlayerPrefs.GetInt(MaxResult, 0);
+        Score = _startScore;
     }
 
     private void Start()
     {
         ScoreChanged?.Invoke(Score);
-        StartCoroutine(UpdateScore());
+
+        if (_updateScore != null)
+            StopCoroutine(_updateScore);
+
+        _updateScore = StartCoroutine(UpdateScore());
     }
 
     public void SetMaxScore()
     {
-        if(Score >= MaxScore)
+        if (Score >= MaxScore)
         {
             MaxScore = Score;
-            PlayerPrefs.SetInt("MaxScore", MaxScore);
-            PlayerPrefs.Save();
+            PlayerPrefs.SetInt(MaxResult, MaxScore);
         }
     }
 
     private IEnumerator UpdateScore()
     {
-        while(Time.timeScale != 0)
+        var waitForNewUpdateScore = new WaitForSeconds(_secondsToAddScore);
+
+        while (Time.timeScale != 0)
         {
             if (Score % _scoreToRiseSpeed == 0 && Score != 0)
             {
-                Time.timeScale += 0.2f;
+                Time.timeScale += _speedBoost;
             }
 
             Score += _scoreToAdd;
             ScoreChanged?.Invoke(Score);
-
-            yield return _waitForUpdateScore;
+            yield return waitForNewUpdateScore;
         }
     }
 }

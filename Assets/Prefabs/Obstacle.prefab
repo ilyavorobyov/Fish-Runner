@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4233415768896190725}
   - component: {fileID: 2680573025222310377}
   - component: {fileID: 7515706414402071348}
-  - component: {fileID: 5004852055110723291}
+  - component: {fileID: 4464405910656851915}
   - component: {fileID: -7317124027655870445}
   - component: {fileID: -6794935125046636337}
-  - component: {fileID: 4464405910656851915}
+  - component: {fileID: 287554847334065546}
+  - component: {fileID: -4163125572057418244}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -29,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431194842847799632}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.3859272, y: 1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2680573025222310377
 SpriteRenderer:
@@ -101,8 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabe473208fd7a749bbbc08c84b0c69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
---- !u!114 &5004852055110723291
+--- !u!114 &4464405910656851915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,12 +111,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431194842847799632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988c3275a7ce59544b698c00fbd63cf1, type: 3}
+  m_Script: {fileID: 11500000, guid: dc784e13327faca45b9ff473ab6ecf18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _increaseCount: 3
-  _defaultSpeed: 3
 --- !u!60 &-7317124027655870445
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -127,6 +124,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -154,6 +170,7 @@ PolygonCollider2D:
       - {x: 0.47, y: -0.24}
       - {x: 0.61, y: -0.02}
       - {x: 0.61, y: 0.29999998}
+  m_UseDelaunayMesh: 0
 --- !u!50 &-6794935125046636337
 Rigidbody2D:
   serializedVersion: 4
@@ -171,11 +188,17 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4464405910656851915
+--- !u!114 &287554847334065546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,6 +207,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431194842847799632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc784e13327faca45b9ff473ab6ecf18, type: 3}
+  m_Script: {fileID: 11500000, guid: ae58f20cda17c1e4f82f36b4bf3a9ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4163125572057418244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431194842847799632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e5676162adedf499eb042910ebbc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
+  _moveDirection: {x: -1, y: -1, z: 0}
+  _startRotation: {x: 0, y: 0, z: 0}

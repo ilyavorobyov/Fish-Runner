@@ -1,24 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ShieldBooster : MonoBehaviour
+public class ShieldBooster : Booster
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void TurnOn(Player player)
     {
-        if (collision.TryGetComponent(out Player player))
-        {
-            player.ActivateShield();
-        }
-
-        if (!collision.TryGetComponent(out Enemy enemy))
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        gameObject.SetActive(false);
+        player.ActivateShield();
     }
 }
